@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+
+# Logs / local
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.originkit/
+
+# Heavy / local-only assets (keep on disk; do not push)
+public/catalogo-original.pdf
+public/Sonho de Papel - Direção visual.pdf
+public/_preview/
+public/brand/

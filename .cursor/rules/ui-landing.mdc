@@ -1,0 +1,14 @@
+---
+description: Orientações de UI ao editar a landing React
+globs: index.html,src/**/*.{css,tsx,ts}
+alwaysApply: false
+---
+
+# UI da landing
+
+- Manter hierarquia clara no primeiro viewport: marca → headline → apoio → CTAs.
+- Alterar identidade visual pelos tokens `@theme` / `:root` em `src/styles/main.css`.
+- Preferir tipografia + whitespace a cards/sombras/pills.
+- Reutilizar o bank em `src/components/` antes de buscar novos kits.
+- CTAs principais apontam para WhatsApp / mailto / redes.
+- Testar mentalmente mobile: CTAs com área de toque boa.
