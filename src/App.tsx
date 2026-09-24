@@ -176,7 +176,7 @@ export default function App() {
             <figure className="relative w-44 -rotate-3 sm:w-48">
               <img
                 src="/logo.webp"
-                alt="Logo Sonho de Papel — Papelaria Cristã"
+                alt="Logo Sonho de Papel — Papelaria Criativa"
                 width={480}
                 height={480}
                 className="logo-sticker aspect-square w-full"
@@ -198,7 +198,7 @@ export default function App() {
 
         <BlurFade delay={0.14} inView>
           <p className="mt-8 font-display text-xs font-semibold uppercase tracking-[0.24em] text-ink-muted">
-            Sonho de Papel · Papelaria Cristã
+            Sonho de Papel · Papelaria Criativa
           </p>
         </BlurFade>
 
@@ -285,11 +285,8 @@ export default function App() {
         <BottomWave />
         <p className="absolute inset-x-0 bottom-5 flex items-center justify-center gap-1.5 text-xs text-ink-muted">
           Feito com
-          <Heart
-            className="size-3 fill-brand text-brand"
-            aria-hidden
-          />
-          · Sonho de Papel · {year}
+          <Heart className="size-3 fill-brand text-brand" aria-hidden />· Sonho
+          de Papel · {year}
         </p>
       </footer>
     </div>

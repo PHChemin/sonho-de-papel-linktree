@@ -15,7 +15,6 @@ type Kind =
   | 'sparkle-outline'
   | 'star'
   | 'heart'
-  | 'clip'
   | 'tape-pink'
   | 'tape-green'
   | 'stitch'
@@ -87,19 +86,6 @@ const SHAPES: Record<Kind, { width: number; node: ReactNode }> = {
           {...stroke}
           fill={BLUSH}
           stroke={RASPBERRY}
-        />
-      </svg>
-    ),
-  },
-  clip: {
-    width: 30,
-    node: (
-      <svg viewBox="0 0 24 24">
-        <path
-          d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"
-          stroke={INK}
-          {...stroke}
-          strokeWidth={1.3}
         />
       </svg>
     ),
