@@ -1,0 +1,471 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Self-hosted brand fonts (public/fonts) — no external font CDN */
+@font-face {
+  font-family: "Aroma Vintage";
+  src:
+    local("Aroma Vintage"),
+    url("/fonts/AromaVintage-Regular.otf") format("opentype"),
+    url("/fonts/AromaVintage-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Aileron";
+  src: url("/fonts/Aileron-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Aileron";
+  src: url("/fonts/Aileron-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Aileron";
+  src: url("/fonts/Aileron-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Carlito";
+  src: url("/fonts/Carlito-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Carlito";
+  src: url("/fonts/Carlito-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Palette from "Sonho de Papel — Direção visual" (Letz Studio) */
+@theme {
+  --font-display: "Aileron", system-ui, sans-serif;
+  --font-accent: "Aroma Vintage", Georgia, serif;
+  --font-sans: Calibri, Carlito, "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  --color-ink: #3a3737;
+  --color-ink-muted: #6b6b68;
+  --color-paper: #fff8f3;
+  --color-card-paper: #fffdfb;
+  --color-blush: #f7dde3;
+  --color-blush-deep: #efc2cd;
+  --color-brand: #f05f83;
+  --color-brand-hover: #d94e70;
+  --color-butter: #f5d77a;
+  --color-butter-hover: #f2cd5c;
+  --color-sprout: #b8e76b;
+  --color-sprout-soft: #e3f3c8;
+  --color-surface: #ffffff;
+}
+
+@theme inline {
+  --font-heading: var(--font-display);
+  --font-sans: Calibri, Carlito, "Segoe UI", system-ui, sans-serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
+  --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
+  --animate-gradient: gradient 8s linear infinite;
+  --animate-blink-cursor: blink-cursor 1.2s step-end infinite;
+  --animate-float-soft: float-soft 7s ease-in-out infinite;
+
+  @keyframes shimmer-slide {
+    to {
+      transform: translate(calc(100cqw - 100%), 0);
+    }
+  }
+  @keyframes spin-around {
+    0% {
+      transform: translateZ(0) rotate(0);
+    }
+    15%,
+    35% {
+      transform: translateZ(0) rotate(90deg);
+    }
+    65%,
+    85% {
+      transform: translateZ(0) rotate(270deg);
+    }
+    100% {
+      transform: translateZ(0) rotate(360deg);
+    }
+  }
+  @keyframes gradient {
+    to {
+      background-position: var(--bg-size, 300%) 0;
+    }
+  }
+  @keyframes blink-cursor {
+    0%,
+    49% {
+      opacity: 1;
+    }
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes float-soft {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+}
+
+/* Sonho de Papel — clear, warm paper climate (not dark) */
+:root {
+  --background: #fff8f3;
+  --foreground: #3a3737;
+  --card: #fffdfb;
+  --card-foreground: #3a3737;
+  --popover: #fffdfb;
+  --popover-foreground: #3a3737;
+  --primary: #f05f83;
+  --primary-foreground: #fff8f3;
+  --secondary: #f5d77a;
+  --secondary-foreground: #3a3737;
+  --muted: #f7dde3;
+  --muted-foreground: #6b6b68;
+  --accent: #e3f3c8;
+  --accent-foreground: #3a3737;
+  --destructive: oklch(0.55 0.18 25);
+  --border: rgb(58 55 55 / 12%);
+  --input: rgb(58 55 55 / 10%);
+  --ring: #f05f83;
+  --chart-1: #f05f83;
+  --chart-2: #f5d77a;
+  --chart-3: #b8e76b;
+  --chart-4: #6b6b68;
+  --chart-5: #3a3737;
+  --radius: 1rem;
+  --sidebar: #fff8f3;
+  --sidebar-foreground: #3a3737;
+  --sidebar-primary: #f05f83;
+  --sidebar-primary-foreground: #fff8f3;
+  --sidebar-accent: #e3f3c8;
+  --sidebar-accent-foreground: #3a3737;
+  --sidebar-border: rgb(58 55 55 / 10%);
+  --sidebar-ring: #f05f83;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer utilities {
+  .font-accent {
+    font-family: var(--font-accent);
+  }
+
+  /* Cream paper with the catalog's faint sparkles and dots */
+  .paper-bg {
+    background-color: var(--color-paper);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cg fill='%236B6B68' fill-opacity='0.13'%3E%3Cpath d='M28 22 Q28 30 36 30 Q28 30 28 38 Q28 30 20 30 Q28 30 28 22Z'/%3E%3Cpath d='M112 92 Q112 98 118 98 Q112 98 112 104 Q112 98 106 98 Q112 98 112 92Z'/%3E%3Ccircle cx='84' cy='26' r='1.4'/%3E%3Ccircle cx='24' cy='124' r='1.4'/%3E%3Ccircle cx='140' cy='146' r='1.2'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 160px 160px;
+  }
+
+  /* "Costura" — dashed stitch inside rounded frames */
+  .stitch {
+    outline: 1.5px dashed rgb(58 55 55 / 20%);
+    outline-offset: -7px;
+    transition: outline-color 0.3s ease;
+  }
+
+  /* Washi tape strip with torn zigzag ends */
+  .washi {
+    clip-path: polygon(
+      3% 0, 97% 0, 100% 16%, 97% 33%, 100% 50%, 97% 66%, 100% 83%, 97% 100%,
+      3% 100%, 0 83%, 3% 66%, 0 50%, 3% 33%, 0 16%
+    );
+  }
+
+  /* drop-shadow follows the scalloped edge of the transparent PNG */
+  .logo-sticker {
+    filter: drop-shadow(5px 6px 0 var(--color-blush-deep))
+      drop-shadow(0 12px 14px rgb(58 55 55 / 12%));
+  }
+
+  /* All CTAs: paper cutout sitting on a rosa bebê sheet */
+  .cta {
+    position: relative;
+    isolation: isolate;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease;
+  }
+
+  .cta:active {
+    transform: translateY(1px);
+  }
+
+  /* Catalog — butter highlight + Letz WhatsAppCta pulse / float */
+  .cta-float {
+    animation: float-soft 3.2s ease-in-out infinite;
+  }
+
+  .cta-primary {
+    background: var(--color-butter);
+    color: var(--color-ink);
+    box-shadow: 4px 4px 0 0 var(--color-blush-deep);
+  }
+
+  .cta-primary:hover {
+    background: var(--color-butter-hover);
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0 0 var(--color-blush-deep);
+  }
+
+  .cta-primary:active {
+    box-shadow: 2px 2px 0 0 var(--color-blush-deep);
+  }
+
+  .cta-ping {
+    position: absolute;
+    inset: -3px;
+    border-radius: 1.15rem;
+    border: 2px solid var(--color-brand);
+    opacity: 0;
+    animation: cta-ping 3.2s ease-out infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .cta-ping-delay {
+    animation-delay: 1.6s;
+  }
+
+  .cta-nudge {
+    animation: cta-icon-nudge 3.2s ease-in-out infinite;
+  }
+
+  .cta-primary:hover .cta-nudge {
+    animation-play-state: paused;
+  }
+
+  /* WhatsApp / Instagram — Letz OutlineCta fill hover, in rosa bebê */
+  .cta-soft {
+    overflow: hidden;
+    background: var(--color-card-paper);
+    border: 1.5px solid rgb(58 55 55 / 10%);
+    box-shadow: 3px 3px 0 0 var(--color-blush);
+  }
+
+  .cta-soft-fill {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    background: var(--color-blush);
+    transition: transform 0.35s ease-out;
+    pointer-events: none;
+  }
+
+  .cta-soft:hover .cta-soft-fill {
+    transform: scaleY(1);
+  }
+
+  .cta-soft:hover {
+    transform: translateY(-2px);
+    box-shadow: 5px 5px 0 0 var(--color-blush-deep);
+    outline-color: rgb(240 95 131 / 45%);
+  }
+
+  .cta-soft:active {
+    box-shadow: 2px 2px 0 0 var(--color-blush-deep);
+  }
+
+  .cta-arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .cta:hover .cta-arrow {
+    transform: translate(2px, -2px);
+  }
+
+  /* Scrapbook figures */
+  .doodle {
+    position: absolute;
+    translate: -50% -50%;
+    rotate: var(--r, 0deg);
+    animation: doodle-sway var(--dur, 8s) ease-in-out var(--delay, 0s) infinite;
+  }
+
+  .doodle-twinkle {
+    animation:
+      doodle-sway var(--dur, 8s) ease-in-out var(--delay, 0s) infinite,
+      doodle-twinkle 3.4s ease-in-out var(--delay, 0s) infinite;
+  }
+
+  @media (max-width: 639px) {
+    .doodle {
+      scale: 0.75;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .doodle {
+      scale: 1.3;
+    }
+  }
+
+  @keyframes doodle-sway {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-5px) rotate(4deg);
+    }
+  }
+
+  @keyframes doodle-twinkle {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.45;
+    }
+  }
+
+  @keyframes cta-ping {
+    0% {
+      transform: scale(1);
+      opacity: 0.4;
+    }
+    70% {
+      transform: scale(1.05);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1.05);
+      opacity: 0;
+    }
+  }
+
+  @keyframes cta-icon-nudge {
+    0%,
+    100% {
+      transform: rotate(0deg) scale(1);
+    }
+    25% {
+      transform: rotate(-8deg) scale(1.05);
+    }
+    50% {
+      transform: rotate(0deg) scale(1);
+    }
+    75% {
+      transform: rotate(8deg) scale(1.05);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-float,
+    .cta-ping,
+    .cta-nudge,
+    .doodle,
+    .doodle-twinkle {
+      animation: none;
+    }
+
+    .cta:hover {
+      transform: none;
+    }
+  }
+}
