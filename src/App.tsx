@@ -190,7 +190,7 @@ export default function App() {
 
       <main
         id="conteudo"
-        className="relative z-10 mx-auto flex w-full max-w-[26rem] flex-1 flex-col items-center justify-center px-6 pb-10 pt-16 text-center"
+        className="relative z-10 mx-auto flex w-full max-w-[26rem] flex-1 sm:max-w-[34rem] flex-col items-center justify-center px-6 pb-10 pt-16 text-center"
       >
         <BlurFade delay={0.04} inView>
           <div className="animate-float-soft">
@@ -225,9 +225,9 @@ export default function App() {
 
         <BlurFade delay={0.22} inView className="mt-3 w-full">
           <h1 className="font-accent text-[2.15rem] leading-[1.1] text-brand sm:text-[2.5rem]">
-            Feito com{" "}
+            Entre papéis e{" "}
             <span className="relative inline-block">
-              carinho,
+              sonhos,
               <svg
                 className="absolute -bottom-1.5 left-0 h-2.5 w-full"
                 viewBox="0 0 100 10"
@@ -245,7 +245,7 @@ export default function App() {
               </svg>
             </span>
             <br />
-            um a um
+            criamos momentos
           </h1>
         </BlurFade>
 
@@ -257,7 +257,7 @@ export default function App() {
         </BlurFade>
 
         <nav
-          className="mt-9 flex w-full flex-col items-stretch gap-4"
+          className="mt-9 flex w-full flex-col items-stretch gap-4 sm:max-w-[23rem]"
           aria-label="Links principais"
         >
           {LINKS.map(({ id, label, hint, href, icon, primary }, i) => (
